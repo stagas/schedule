@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>schedule</title>
+    <link rel="stylesheet" href="build/build.css">
+    <style>
+    .not_working .rect {
+      background: #ddd;
+      border-color: #ddd;
+    }
+    .bookings .rect {
+      background: #aaf;
+      border-color: #88a;
+      border-width: 2px;
+      border-top-color: #eef;
+      border-left-color: #eef;
+    }
+    </style>
+  </head>
+  <body>
+    <script src="build/build.js"></script>
+    <script>
+
+    var Schedule = require('schedule')
+
+    // create a new schedule
+    var schedule = new Schedule()
+
+    // setup
+    schedule
+    .set('days', 7)
+    .set('day format', '[<h4>]dddd[</h4><h1>]D[</h1><h2>]MMM[</h2><h3>]YYYY[</h3>]')
+    .addColumn(1, 'Mary')
+    .addColumn(2, 'John')
+    .addColumn(3, 'Sophia')
+
+    // layers
+    schedule.addLayer('not_working', getNotWorking)
+    schedule.addLayer('bookings', getBookings)
+
+    // events
+
+    // click
+
+    schedule.on('click', function (item) {
+      console.log('clicked', item)
+    })
+
+    // select
+
+    schedule.on('select', function (select) {
+
+      // only keep H:mm of target
+      // but put in same day
+      select.range.to = select.range.from.clone()
+        .hours(select.range.to.hours())
+        .minutes(select.range.to.minutes())
+
+      var item = schedule.addItem({
+        range: select.range
+      , col: select.a.col
+      , layer: schedule.layers.bookings
+      })
+
+      schedule.refresh(true)
+      schedule.deselect()
+    })
+
+    schedule.on('change', function (item) {
+      console.log('changed!', item)
+    })
+
+    // insert
+
+    schedule.show(document.body)
+
+    window.onresize = function () {
+      schedule.refresh(true)
+    }
+
+    // booking dates
+
+    function getBookings (date, addItem) {
+      this.columns.forEach(function (col) {
+        if (Math.random() > 0.5) {
+          var d = date.clone().startOf('day').hours(rand(9,17))
+          var dt = d.clone().add('minutes', rand(10, 120))
+          var item = addItem({
+            range: {
+              from: d
+            , to: dt
+            }
+          , col: col
+          })
+        }
+      })
+      return true
+    }
+
+    // not working dates
+
+    function getNotWorking (date, addItem) {
+      var d = date.clone().startOf('day').hours(7)
+      var dt = d.clone().add('hours', 2)
+      this.columns.forEach(function (col) {
+        addItem({
+          range: {
+            from: d
+          , to: dt
+          }
+        , col: col
+        })
+        addItem({
+          range: {
+            from: d.clone().hours(17)
+          , to: d.clone().hours(22)
+          }
+        , col: col
+        })
+      })
+      return true
+    }
+
+    // utils
+
+    function rand (n, b) {
+      if ('undefined' == typeof b) return Math.floor(Math.random() * (n || 1))
+      else return rand(b-n)+n
+    }
+
+    </script>
+  </body>
+</html>
