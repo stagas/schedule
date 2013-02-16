@@ -1,0 +1,236 @@
+
+/* schedule */
+
+.schedule {
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+.schedule table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schedule table td,
+.schedule table th {
+  font-size: 12px;
+  border: 1px solid #f6f6f6;
+  margin: 0;
+  padding: 0;
+}
+
+.schedule tbody {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.schedule thead th {
+  border-color: #bbb;
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.schedule thead th h1,
+.schedule thead th h2,
+.schedule thead th h3,
+.schedule thead th h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.schedule .controls {
+  padding: 0;
+  margin: 0;
+  width: 50px;
+  min-width: 50px;
+}
+
+.schedule .controls button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.schedule .controls button {
+  font-family: 'controls';
+  font-size: 14px !important;
+  font-weight: normal;
+  color: #888;
+  width: 25px;
+  height: 30px;
+  margin: 0px;
+  padding: 0;
+  border: none;
+  display: inline-block;
+}
+
+.schedule .controls button:hover {
+  cursor: pointer;
+  background: #ddd;
+  color: #000;
+}
+
+.schedule .col {
+  min-width: 32px;
+  max-width: 32px;
+}
+
+.schedule .cell {
+  min-width: 32px;
+  max-width: 32px;
+  height: 4px;
+}
+
+.schedule .time {
+  width: 50px;
+  min-width: 50px;
+}
+
+.schedule .time-outer {
+  text-align: center;
+  position: relative;
+  width: 50px;
+  min-width: 50px;
+}
+
+.schedule .time-inner {
+  position: absolute;
+  left: 0;
+  top: -4px;
+  opacity: 0;
+  width: 50px;
+}
+
+.schedule .row.s1 .time-inner {
+  opacity: 1;
+}
+
+.schedule .row.s2 .time-inner {
+  opacity: 0.3;
+}
+
+.schedule .row.highlight .time-inner {
+  opacity: 1;
+  background: #ccc;
+}
+
+.schedule .cell.selected {
+  background: #f0f0f0;
+}
+
+.schedule .cell.selected.first-col {
+  border-left: 2px solid #09c;
+}
+
+.schedule .cell.selected.first-row {
+  border-top: 2px solid #09c;
+}
+
+.schedule .cell.selected.last-row {
+  border-bottom: 2px solid #09c;
+}
+
+.schedule .cell.selected.last-col {
+  border-right: 2px solid #09c;
+}
+
+.schedule .cell.highlight {
+  background: #ddd;
+}
+
+.schedule .row.s1 td {
+  border-top: 1px solid #e5e5e5;
+}
+
+.schedule .row.s1-next td {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.schedule .row.s2 td {
+  border-top: 1px solid #efefef;
+}
+
+.schedule .row.s2-next td {
+  border-bottom: 1px solid #efefef;
+}
+
+.schedule .time {
+  background: #f3f3f3;
+  font-size: 12px;
+  line-height: 11px;
+  border-left-color: #bbb;
+  border-right-color: #bbb;
+}
+
+.schedule .cell {
+  border-left-color: #e5e5e5;
+  border-right-color: #e5e5e5;
+}
+
+.schedule .cell.last-col {
+  border-right-color: #bbb;
+}
+
+.schedule .layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.schedule .rect {
+  border: 2px solid #29e;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.schedule .rect .range {
+  position: absolute;
+  left: 0;
+  top: -2px;
+  padding: 0 2px;
+  font-size: 11px;
+  background: #29e;
+  color: #fff;
+}
+
+.schedule .rect.select {
+  z-index: 100;
+}
+
+.schedule.resize-y {
+  cursor: n-resize;
+}
+
+.schedule.move {
+  cursor: move;
+}
+
+.schedule .rect .edge-y {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: transparent;
+  z-index: 1;
+}
+
+.schedule .rect .edge-top {
+  top: -2px;
+  cursor: move;
+}
+
+.schedule .rect .edge-bottom {
+  cursor: n-resize;
+  bottom: -2px;
+  left: 0;
+}

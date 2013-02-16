@@ -1,0 +1,22 @@
+{
+  "name": "schedule",
+  "version": "0.0.1",
+  "description": "schedule calendar",
+  "keywords": ["schedule","calendar"],
+  "author": "stagas",
+  "license": "MIT",
+  "scripts": [
+    "index.js",
+    "item.js",
+    "rect.js",
+    "utils.js",
+    "template.js"
+  ],
+  "styles": ["icon-font.css","style.css"],
+  "dependencies": {
+    "stagas/configurable.js": "*",
+    "component/jquery": "*",
+    "component/emitter": "*",
+    "component/moment": "*"
+  }
+}
