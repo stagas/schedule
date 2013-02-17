@@ -64,8 +64,8 @@ Item.prototype.set = function (a, b) {
 Item.prototype.createEdges = function () {
   var self = this
 
-  var rt = o('<div class="resize-y edge-y edge-top"></div>')
-  var rb = o('<div class="resize-y edge-y edge-bottom"></div>')
+  var rt = o('<div class="schedule-resize-y schedule-edge-y schedule-edge-top"></div>')
+  var rb = o('<div class="schedule-resize-y schedule-edge-y schedule-edge-bottom"></div>')
 
   rt.on('mousedown', function () {
     self.dragging = 'top'

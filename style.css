@@ -16,8 +16,8 @@
 
 .schedule table td,
 .schedule table th {
+  border: 1px solid #bbb;
   font-size: 12px;
-  border: 1px solid #f6f6f6;
   margin: 0;
   padding: 0;
 }
@@ -50,19 +50,19 @@
   padding: 0;
 }
 
-.schedule .controls {
+.schedule-controls {
   padding: 0;
   margin: 0;
   width: 50px;
   min-width: 50px;
 }
 
-.schedule .controls button::-moz-focus-inner {
+.schedule-controls button::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-.schedule .controls button {
+.schedule-controls button {
   font-family: 'controls';
   font-size: 14px !important;
   font-weight: normal;
@@ -75,36 +75,38 @@
   display: inline-block;
 }
 
-.schedule .controls button:hover {
+.schedule-controls button:hover {
   cursor: pointer;
   background: #ddd;
   color: #000;
 }
 
-.schedule .col {
+.schedule-col {
   min-width: 32px;
   max-width: 32px;
 }
 
-.schedule .cell {
+.schedule .schedule-cell {
+  border: 1px solid #f5f5f5;
   min-width: 32px;
   max-width: 32px;
   height: 4px;
 }
 
-.schedule .time {
+.schedule .schedule-time {
+  border-bottom-color: #f5f5f5;
   width: 50px;
   min-width: 50px;
 }
 
-.schedule .time-outer {
+.schedule-time-outer {
   text-align: center;
   position: relative;
   width: 50px;
   min-width: 50px;
 }
 
-.schedule .time-inner {
+.schedule-time-inner {
   position: absolute;
   left: 0;
   top: -4px;
@@ -112,60 +114,49 @@
   width: 50px;
 }
 
-.schedule .row.s1 .time-inner {
+.schedule-row-s1 .schedule-time-inner {
   opacity: 1;
 }
 
-.schedule .row.s2 .time-inner {
+.schedule-row-s2 .schedule-time-inner {
   opacity: 0.3;
 }
 
-.schedule .row.highlight .time-inner {
+.schedule-row.schedule-highlight .schedule-time-inner {
   opacity: 1;
   background: #ccc;
 }
 
-.schedule .cell.selected {
-  background: #f0f0f0;
-}
-
-.schedule .cell.selected.first-col {
-  border-left: 2px solid #09c;
-}
-
-.schedule .cell.selected.first-row {
-  border-top: 2px solid #09c;
-}
-
-.schedule .cell.selected.last-row {
-  border-bottom: 2px solid #09c;
-}
-
-.schedule .cell.selected.last-col {
-  border-right: 2px solid #09c;
-}
-
-.schedule .cell.highlight {
+.schedule .schedule-cell.schedule-highlight {
   background: #ddd;
 }
 
-.schedule .row.s1 td {
+.schedule .schedule-row-s1 td {
   border-top: 1px solid #e5e5e5;
 }
 
-.schedule .row.s1-next td {
+.schedule .schedule-row-s1-next td {
   border-bottom: 1px solid #e5e5e5;
 }
 
-.schedule .row.s2 td {
+.schedule .schedule-row-s2 td {
   border-top: 1px solid #efefef;
 }
 
-.schedule .row.s2-next td {
+.schedule .schedule-row-s2-next td {
   border-bottom: 1px solid #efefef;
 }
 
-.schedule .time {
+.schedule .schedule-cell {
+  border-left-color: #e5e5e5;
+  border-right-color: #e5e5e5;
+}
+
+.schedule .schedule-cell-last-col {
+  border-right-color: #bbb;
+}
+
+.schedule-time {
   background: #f3f3f3;
   font-size: 12px;
   line-height: 11px;
@@ -173,22 +164,13 @@
   border-right-color: #bbb;
 }
 
-.schedule .cell {
-  border-left-color: #e5e5e5;
-  border-right-color: #e5e5e5;
-}
-
-.schedule .cell.last-col {
-  border-right-color: #bbb;
-}
-
-.schedule .layer {
+.schedule-layer {
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.schedule .rect {
+.schedule-rect {
   border: 2px solid #29e;
   position: absolute;
   margin: 0;
@@ -196,7 +178,7 @@
   overflow: hidden;
 }
 
-.schedule .rect .range {
+.schedule-range {
   position: absolute;
   left: 0;
   top: -2px;
@@ -206,19 +188,19 @@
   color: #fff;
 }
 
-.schedule .rect.select {
+.schedule-select {
   z-index: 100;
 }
 
-.schedule.resize-y {
+.schedule-resize-y {
   cursor: n-resize;
 }
 
-.schedule.move {
+.schedule-move {
   cursor: move;
 }
 
-.schedule .rect .edge-y {
+.schedule-edge-y {
   position: absolute;
   left: 0;
   width: 100%;
@@ -227,12 +209,12 @@
   z-index: 1;
 }
 
-.schedule .rect .edge-top {
+.schedule-edge-top {
   top: -2px;
   cursor: move;
 }
 
-.schedule .rect .edge-bottom {
+.schedule-edge-bottom {
   cursor: n-resize;
   bottom: -2px;
   left: 0;

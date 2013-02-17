@@ -229,8 +229,8 @@ Schedule.prototype.addListeners = function () {
       self.selecting = false
       self.emit('select', self.select)
     }
-    self.el.removeClass('resize-y')
-    self.el.removeClass('move')
+    self.el.removeClass('schedule-resize-y')
+    self.el.removeClass('schedule-move')
     if (self.resizing) self.resizing.emit('change')
     if (self.dragging) self.dragging.emit('change')
     self.resizing = false
@@ -247,18 +247,18 @@ Schedule.prototype.addListeners = function () {
 
 Schedule.prototype.enableControls = function () {
   var self = this
-  var ctrl = this.controls = this.el.find('.controls')
+  var ctrl = this.controls = this.el.find('.schedule-controls')
 
-  var dateCtrl = ctrl.find('.date')
-  dateCtrl.on('click', '.next', this.nextDay.bind(this))
-  dateCtrl.on('click', '.prev', this.prevDay.bind(this))
+  var dateCtrl = ctrl.find('.schedule-date')
+  dateCtrl.on('click', '.schedule-next', this.nextDay.bind(this))
+  dateCtrl.on('click', '.schedule-prev', this.prevDay.bind(this))
 
-  var numdaysCtrl = ctrl.find('.numdays')
-  numdaysCtrl.on('click', '.plus', function () {
+  var numdaysCtrl = ctrl.find('.schedule-numdays')
+  numdaysCtrl.on('click', '.schedule-plus', function () {
     self.inc('days')
     self.refresh(true, true)
   })
-  numdaysCtrl.on('click', '.minus', function () {
+  numdaysCtrl.on('click', '.schedule-minus', function () {
     if (!self.dec('days')) self.set('days', 1)
     self.refresh(true, true)
   })
@@ -273,11 +273,11 @@ Schedule.prototype.enableControls = function () {
  */
 
 Schedule.prototype.highlight = function (xy) {
-  this.el.find('.highlight').removeClass('highlight')
+  this.el.find('.schedule-highlight').removeClass('schedule-highlight')
   var cell = this.cells[xy.y][xy.x]
   var row = this.rows[xy.y]
-  cell.el.addClass('highlight')
-  row.el.addClass('highlight')
+  cell.el.addClass('schedule-highlight')
+  row.el.addClass('schedule-highlight')
   return this
 }
 
@@ -325,12 +325,12 @@ Schedule.prototype.addItem = function (data) {
 
   item.on('resize-y', function () {
     self.resizing = item
-    self.el.addClass('resize-y')
+    self.el.addClass('schedule-resize-y')
   })
 
   item.on('drag', function () {
     self.dragging = item
-    self.el.addClass('move')
+    self.el.addClass('schedule-move')
   })
 
   item.on('change', function () {
@@ -556,7 +556,7 @@ Schedule.prototype.getDateByXY = function (xy) {
  */
 
 Schedule.prototype.makeDays = function () {
-  var row = this.head.find('tr.days')
+  var row = this.head.find('.schedule-days')
   var days = this.days
   var cols = this.columns.length
   var format = this.get('day format')
@@ -584,14 +584,14 @@ Schedule.prototype.makeDays = function () {
  */
 
 Schedule.prototype.makeColumns = function () {
-  var cols = this.head.find('.cols')
+  var cols = this.head.find('.schedule-cols')
   cols.html('')
   this.days.forEach(function (day, i) {
     this.columns.forEach(function (col) {
       var c = 'day-'+i+'-col-'+col.id
       var th = o('<th></th>')
       th.text(col.name)
-      th.addClass('col')
+      th.addClass('schedule-col')
       th.addClass(c)
       cols.append(th)
     }, this)
@@ -630,7 +630,7 @@ Schedule.prototype.makeHours = function () {
             x: x
           , y: y
           , col: col
-          , class: i == cols.length-1 ? 'last-col' : i == 0 ? 'first-col' : ''
+          , class: i == cols.length-1 ? 'schedule-cell-last-col' : i == 0 ? 'schedule-cell-first-col' : ''
           }, self)
           cells[y][x] = cell
           rows[y].add(cell)
@@ -731,7 +731,7 @@ Schedule.prototype.createSelect = function () {
   select.hide()
   select.schedule = this
   select.on('change', function () {
-    var html = '<div class="range">'
+    var html = '<div class="schedule-range">'
       + select.range.from.format('H:mm')
       + ' - '
       + select.range.to.format('H:mm')
@@ -753,7 +753,7 @@ function Select (schedule) {
   this.isVisible = false
   this.range = {}
   this.rect = new Rect()
-  this.rect.el.addClass('select')
+  this.rect.el.addClass('schedule-select')
   o(schedule.el).append(this.rect.el)
 }
 
@@ -820,7 +820,7 @@ Select.prototype.set = function (a, b) {
 function Day (format, date, cols) {
   this.date = date
   this.el = o('<th></th>')
-  this.el.addClass('day')
+  this.el.addClass('schedule-day')
   this.el.attr('colspan', cols)
   this.el.html(date.format(format))
 }
@@ -837,14 +837,14 @@ function Day (format, date, cols) {
 function Row (h, m, step) {
   var html = ''
   this.el = o('<tr></tr>')
-  this.el.addClass('row')
-  this.el.addClass(0 == m ? 's1' : 30 == m ? 's2' : 's3')
-  this.el.addClass(60 == m+step ? 's1-next' : 30 == m+step ? 's2-next' : 's3-next')
+  this.el.addClass('schedule-row')
+  this.el.addClass(0 == m ? 'schedule-row-s1' : 30 == m ? 'schedule-row-s2' : 'schedule-row-s3')
+  this.el.addClass(60 == m+step ? 'schedule-row-s1-next' : 30 == m+step ? 'schedule-row-s2-next' : 'schedule-row-s3-next')
   this.h = h
   this.m = m
-  html += '<td class="time">'
-        + '<div class="time-outer">'
-        + '<div class="time-inner">'
+  html += '<td class="schedule-time">'
+        + '<div class="schedule-time-outer">'
+        + '<div class="schedule-time-inner">'
         + this
         + '</div></div></td>'
   this.el.html(html)
@@ -883,7 +883,7 @@ Row.prototype.add = function (cell) {
 function Cell (data, schedule) {
   this.schedule = schedule
   this.el = o('<td></td>')
-  this.el.addClass('cell')
+  this.el.addClass('schedule-cell')
   this.el.addClass(data.class)
   this.col = data.col
   this.y = data.y
@@ -913,7 +913,7 @@ function Layer (name, fn) {
   this.name = name
   this.fn = fn
   this.el = o('<div></div>')
-  this.el.addClass('layer')
+  this.el.addClass('schedule-layer')
   this.el.addClass(name)
   this.items = []
 }

@@ -18,7 +18,7 @@ module.exports = Rect
  */
 
 function Rect () {
-  this.el = o('<div class="rect"></div>')
+  this.el = o('<div class="schedule-rect"></div>')
 }
 
 /**
