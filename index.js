@@ -127,11 +127,6 @@ Schedule.prototype.refresh = function (all, first) {
     if (first) setTimeout(this.makeItems.bind(this), 0)
     else this.makeItems()
   }
-  var width = this.el.find('.cell').first().width()
-  this.el.find('.day').css({
-    minWidth: (width * this.columns.length)+'px'
-  , maxWidth: (width * this.columns.length)+'px'
-  })
   return this
 }
 
