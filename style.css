@@ -9,6 +9,13 @@
   padding: 0;
 }
 
+.schedule * {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -o-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
 .schedule table {
   width: 100%;
   border-collapse: collapse;
