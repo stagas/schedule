@@ -33,13 +33,12 @@ function Rect () {
 Rect.prototype.set = function (a, b) {
   this.a = a
   this.b = b
-  this.pos = a.offset()
-  var bo = b.offset()
-  bo.left += b.outerWidth()-4
-  bo.top += b.outerHeight()-4
+  this.pos = a.position()
+  var bo = b.position()
+  var w = b[0].getBoundingClientRect().width
   this.size = {
-    width: bo.left - this.pos.left
-  , height: bo.top - this.pos.top
+    width: bo.left + w - 4 - this.pos.left
+  , height: bo.top + 1 - this.pos.top
   }
   this.el.css({
     left: this.pos.left

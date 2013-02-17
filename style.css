@@ -2,8 +2,11 @@
 /* schedule */
 
 .schedule {
+  position: relative;
   font-family: sans-serif;
   font-size: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .schedule table {
