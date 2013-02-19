@@ -7,9 +7,15 @@
   "license": "MIT",
   "scripts": [
     "index.js",
-    "item.js",
-    "rect.js",
-    "utils.js",
+    "lib/schedule.js",
+    "lib/item.js",
+    "lib/rect.js",
+    "lib/cell.js",
+    "lib/row.js",
+    "lib/day.js",
+    "lib/layer.js",
+    "lib/select.js",
+    "lib/utils.js",
     "template.js"
   ],
   "styles": ["icon-font.css","style.css"],
