@@ -8,7 +8,10 @@ template:
 components: component.json
 	@component-install --dev
 
+docs:
+	@node support/make-docs
+
 clean:
 	rm -rf components build
 
-.PHONY: clean
+.PHONY: clean docs
