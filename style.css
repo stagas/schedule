@@ -90,15 +90,16 @@
   color: #000;
 }
 
-.schedule-col {
-  min-width: 32px;
-  max-width: 32px;
+.schedule-cell {
+  min-width: 60px;
+}
+
+.schedule .schedule-col {
+  white-space: nowrap;
 }
 
 .schedule .schedule-cell {
   border: 1px solid #f5f5f5;
-  min-width: 32px;
-  max-width: 32px;
   height: 4px;
 }
 
