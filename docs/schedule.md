@@ -6,10 +6,13 @@
   - [Schedule.prevDay()](#scheduleprevday)
   - [Schedule.addItem()](#scheduleadditemdataobject)
   - [Schedule.removeItem()](#scheduleremoveitemitemitem)
+  - [Schedule.clear()](#scheduleclear)
   - [Schedule.addLayer()](#scheduleaddlayernamestringfnfunction)
   - [Schedule.setLayer()](#schedulesetlayernnumberstring)
   - [Schedule.cycleLayers()](#schedulecyclelayers)
+  - [Schedule.clearCache()](#scheduleclearcachedaystring)
   - [Schedule.addColumn()](#scheduleaddcolumnidstringnamestring)
+  - [Schedule.hasColumn()](#schedulehascolumnidstring)
   - [Schedule.eachDay()](#scheduleeachdayfnfunction)
   - [Schedule.eachCell()](#scheduleeachcellfnfunctionrowfnfunction)
 
@@ -45,6 +48,10 @@
 
   Remove item.
 
+## Schedule.clear()
+
+  Clear all layers.
+
 ## Schedule.addLayer(name:String, fn:Function)
 
   Add a layer `name` with fetch
@@ -58,9 +65,17 @@
 
   Cycle through layers.
 
+## Schedule.clearCache(day:String)
+
+  Clear cache for a `day` or entire.
+
 ## Schedule.addColumn(id:String, name:String)
 
   Add a column named `name` of id `id`.
+
+## Schedule.hasColumn(id:String)
+
+  Check if schedule has column `id`.
 
 ## Schedule.eachDay(fn:Function)
 
