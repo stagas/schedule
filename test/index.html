@@ -13,11 +13,11 @@
       padding: 10px;
       position: relative;
     }
-    .not_working .schedule-rect {
+    .not_working .schedule-item {
       background: #ddd;
       border-color: #ddd;
     }
-    .bookings .schedule-rect {
+    .bookings .schedule-item {
       background: #aaf;
       border-color: #88a;
       border-width: 2px;
@@ -40,6 +40,7 @@
     schedule
     .set('days', 7)
     .set('day format', '[<h4>]dddd[</h4><h1>]D[</h1><h2>]MMM[</h2><h3>]YYYY[</h3>]')
+    .set('cell min width', 10)
     .addColumn(1, 'Mary')
     .addColumn(2, 'John')
     .addColumn(3, 'Sophia')
